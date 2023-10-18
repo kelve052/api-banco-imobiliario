@@ -1,0 +1,29 @@
+{
+  "name": "api-banco-imobiliario",
+  "version": "1.0.0",
+  "description": "sistema que realiza o gerenciamento dos players do jogo banco imobiliario",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/aplicacao.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kelve052/api-banco-imobiliario.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kelve052/api-banco-imobiliario/issues"
+  },
+  "homepage": "https://github.com/kelve052/api-banco-imobiliario#readme",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^7.6.2",
+    "nodemon": "^3.0.1",
+    "uuid": "^9.0.1"
+  }
+}
