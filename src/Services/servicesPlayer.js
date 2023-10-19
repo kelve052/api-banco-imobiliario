@@ -1,12 +1,12 @@
-import UserReepositoriePlayers from "../Repositories/repositories";
+import UserReepositoriePlayers from "../Repositories/repositories.js";
 
-const repositorio = new UserReepositoriePlayers
+const repositorio = new UserReepositoriePlayers()
 
 
 
 class ServicesPlayers{
   async servicesGetPlayers(){
-    return repositorio.repositorieGet
+    return repositorio.repositorieGet()
   }
 }
 

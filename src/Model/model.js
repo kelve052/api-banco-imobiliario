@@ -3,9 +3,8 @@ import {v4 as uuidv4} from 'uuid'
 
 const modelPlayers = new mongoose.Schema({
   _id: {
-    type: Number,
-    default: uuidv4,
-    unique: true,
+    type: String,
+    default: uuidv4
   },
   name: {
     type: String,
@@ -18,8 +17,7 @@ const modelPlayers = new mongoose.Schema({
     enun: ['Amarelo', 'Azul', 'Branco', 'Preto', 'Vermelho']
   },
   saldo: {
-    type: Number,
-    default: 0
+    type: Number
   }
 })
 
