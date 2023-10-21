@@ -18,6 +18,11 @@ const modelPlayers = new mongoose.Schema({
   },
   saldo: {
     type: Number
+  },
+  password: {
+    type: String,
+    minlength: [8, 'A senha deve conter no minimo 8 caracteres']
+    // não esquessa de tertar pra ve se esta funcionado na hora de fazer o post do player
   }
 })
 
