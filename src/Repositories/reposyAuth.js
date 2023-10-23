@@ -6,7 +6,7 @@ class UserReposytorieAuth {
     try {
       const namePlayer = await model.findOne({ name: name });
       if (!namePlayer) {
-        throw new Error('Player informado não existe');
+        throw new Error('Player informed not exist');
       }
       return namePlayer;
     } catch (error) {

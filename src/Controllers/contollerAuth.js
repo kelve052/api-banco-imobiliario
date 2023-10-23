@@ -1,11 +1,12 @@
-// import { Jwt } from "jsonwebtoken.js";
+import Jwt from "jsonwebtoken";
 import ServicesAuth from "../Services/servicesAuth.js"
 
 const auth = async (req, res)=>{
   try {
     const {name, password} = req.body
     await new ServicesAuth().servValidadeCredentials(name, password)
-    res.json({Msg: 'Authentication sucefull!'})
+    const token = Jwt.sign({name, password}, process.env.JWT_SECRET, {expiresIn: '30d'})
+    res.json({Acess_token: token})
   } catch (error) {
     res.json({Error: error.message})
   }
