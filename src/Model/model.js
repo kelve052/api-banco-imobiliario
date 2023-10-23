@@ -16,8 +16,9 @@ const modelPlayers = new mongoose.Schema({
     type: String,
     enun: ['Amarelo', 'Azul', 'Branco', 'Preto', 'Vermelho']
   },
-  saldo: {
-    type: Number
+  balancer: {
+    type: Number,
+    default: 0
   },
   password: {
     type: String,
