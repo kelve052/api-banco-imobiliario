@@ -14,7 +14,7 @@ const modelPlayers = new mongoose.Schema({
   },
   tean: {
     type: String,
-    enun: ['Amarelo', 'Azul', 'Branco', 'Preto', 'Vermelho']
+    enum: ['Amarelo', 'Azul', 'Branco', 'Preto', 'Vermelho'],
   },
   balancer: {
     type: Number,
