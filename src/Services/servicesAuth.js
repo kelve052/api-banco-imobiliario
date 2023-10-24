@@ -1,4 +1,4 @@
-import UserReposytorieAuth from "../Repositories/reposyAuth.js";
+import UserReposytorieAuth from "../Repositories/reposiAuth.js";
 
 class ServicesAuth {
   async servValidadeCredentials (name, password){
