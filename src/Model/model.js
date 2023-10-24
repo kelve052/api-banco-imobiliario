@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import {v4 as uuidv4} from 'uuid'
+import { modelRegistro } from "./modelRegister.js";
 
 const modelPlayers = new mongoose.Schema({
   _id: {
@@ -24,6 +25,10 @@ const modelPlayers = new mongoose.Schema({
     type: String,
     minlength: [8, 'A senha deve conter no minimo 8 caracteres']
     // não esquessa de tertar pra ve se esta funcionado na hora de fazer o post do player
+  },
+  register: {
+    type: [modelRegistro],
+    default: null
   }
 })
 
