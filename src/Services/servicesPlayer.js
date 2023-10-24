@@ -23,6 +23,13 @@ class ServicesPlayers{
     throw error;
    }
   }
+  async servicesDeletePlayers(id){
+    try {
+      await repositorio.repositorieDelete(id)
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export default ServicesPlayers

@@ -19,7 +19,7 @@ class UserReepositoriePlayers {
       const  {name} = body
       const Player = await modelPlayers.findById(id)
       if(!Player){
-        throw new Error("id from players not exists!")
+        throw new Error("id entered does not exist!")
       }
       if(Player.name == name){
         const newPlayer = await modelPlayers.findByIdAndUpdate(id, body, { new: true });
@@ -32,6 +32,17 @@ class UserReepositoriePlayers {
         const newPlayer = await modelPlayers.findByIdAndUpdate(id, body, { new: true });
         return newPlayer;
       }
+    } catch (error) {
+      throw error
+    }
+  }
+  async repositorieDelete(id){
+    try {
+      const Player = await modelPlayers.findById(id)
+      if(!Player){
+        throw new Error("id entered does not exist!")
+      }
+      await modelPlayers.findByIdAndDelete(id)
     } catch (error) {
       throw error
     }

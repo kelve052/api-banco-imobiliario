@@ -62,5 +62,16 @@ const playerUpdate = async (req, res)=>{
    res.status(400).json({Error: error.message})
  }
 }
+//-----------------------------------------------------------------------------------------------------
 
-export  {playersGet, playersPost, playerUpdate}
+const PlayerDelete = async (req, res)=>{
+  try {
+    const id = req.params.id
+    await services.servicesDeletePlayers(id)
+    res.status(201).json()
+  } catch (error) {
+    res.status(400).json({Error: error.message})
+  }
+}
+
+export  {playersGet, playersPost, playerUpdate, PlayerDelete}
