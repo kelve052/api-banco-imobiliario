@@ -15,7 +15,7 @@ class UserReposytorieAuth {
   }
   async validadePasswordPlayer(player, password){
     try {
-      const passwordPlayer = await model.findOne({password: password});
+      // const passwordPlayer = await model.findOne({password: password});
       if(player.password != password){
         throw new Error('password Incorret!')
       }
