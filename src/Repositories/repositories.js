@@ -16,12 +16,22 @@ class UserReepositoriePlayers {
   }
   async repositoriePut(id, body){
     try {
-      const put = await modelPlayers.findByIdAndUpdate(id, body)
-      console.log("id", id,  "\n", put)
-      if(!put){
-        throw new Error("ID entered not exists")
+      const  {name} = body
+      const Player = await modelPlayers.findById(id)
+      if(!Player){
+        throw new Error("id from players not exists!")
       }
-      return put
+      if(Player.name == name){
+        const newPlayer = await modelPlayers.findByIdAndUpdate(id, body, { new: true });
+        return newPlayer;
+      }else{
+        const existPlayer  = await modelPlayers.findOne({name: name})
+        if(existPlayer){
+          throw new Error("Name already belongs to player!")
+        }
+        const newPlayer = await modelPlayers.findByIdAndUpdate(id, body, { new: true });
+        return newPlayer;
+      }
     } catch (error) {
       throw error
     }

@@ -3,7 +3,7 @@ const services = new ServicesPlayers()
 
 const playersGet = async (req, res)=>{
   const get = await services.servicesGetPlayers()
-  res.status(200).json({Msg: 'Rota get', Players: get})
+  res.status(200).json({Players: get})
 }
 //-----------------------------------------------------------------------------------------------------
 const playersPost = async (req, res)=>{
@@ -41,8 +41,21 @@ const playerUpdate = async (req, res)=>{
     res.status(400).json({Error: "imcomplete body, required name, tean, balancer and password"})
     return;
   }
+  if(password.length < 8){
+    res.status(400).json({Error:"The password required minimum 8 caracters!"})
+    return;
+  }
+  const regex = /^(?=.*[!@#$%^&*])(?=.*[A-Z])(?=.*[0-9]).{8,}$/
+  const passwordregex = regex.test(password)
+  if(!passwordregex){
+    res.status(400).json({Error: "Mandatory password symbol, a number and capital latter!"})
+    return;
+  }
+  if(tean != "Yellow" && tean != "Blue" && tean != "White" && tean != "Black" && tean != "Red" && tean != "Green"){
+    res.status(400).json({Error: "value of tean invalid, required: Yellow or Blue or White or Black or Red or Green"})
+    return;
+  }
  try {
-    console.log(body)
     const newPlayer = await services.servicesPutPlayer(id, body)
     res.status(200).json({Player: newPlayer})
  } catch (error) {
