@@ -5,6 +5,7 @@ const playersGet = async (req, res)=>{
   const get = await services.servicesGetPlayers()
   res.status(200).json({Msg: 'Rota get', Players: get})
 }
+//-----------------------------------------------------------------------------------------------------
 const playersPost = async (req, res)=>{
  try {
    const {name, tean, password} = req.body
@@ -30,5 +31,23 @@ const playersPost = async (req, res)=>{
   res.status(400).json({Error: error.message})
  }
 }
+//-----------------------------------------------------------------------------------------------------
 
-export  {playersGet, playersPost}
+const playerUpdate = async (req, res)=>{
+  const id = req.params.id
+  const {name, tean, balancer, password} = req.body
+  const body = {name, tean, balancer, password}
+  if(!name || !tean || !balancer || !password){
+    res.status(400).json({Error: "imcomplete body, required name, tean, balancer and password"})
+    return;
+  }
+ try {
+    console.log(body)
+    const newPlayer = await services.servicesPutPlayer(id, body)
+    res.status(200).json({Player: newPlayer})
+ } catch (error) {
+   res.status(400).json({Error: error.message})
+ }
+}
+
+export  {playersGet, playersPost, playerUpdate}

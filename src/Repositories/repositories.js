@@ -14,6 +14,18 @@ class UserReepositoriePlayers {
       throw error
     }
   }
+  async repositoriePut(id, body){
+    try {
+      const put = await modelPlayers.findByIdAndUpdate(id, body)
+      console.log("id", id,  "\n", put)
+      if(!put){
+        throw new Error("ID entered not exists")
+      }
+      return put
+    } catch (error) {
+      throw error
+    }
+  }
 }
 
 export default UserReepositoriePlayers
