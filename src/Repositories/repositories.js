@@ -47,6 +47,14 @@ class UserReepositoriePlayers {
       throw error
     }
   }
+  async repositoiredeleteAllPlayers(){
+    try {
+      await modelPlayers.deleteMany()
+      return;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export default UserReepositoriePlayers

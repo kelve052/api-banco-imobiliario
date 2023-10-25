@@ -73,5 +73,15 @@ const PlayerDelete = async (req, res)=>{
     res.status(400).json({Error: error.message})
   }
 }
+//-----------------------------------------------------------------------------------------------------
 
-export  {playersGet, playersPost, playerUpdate, PlayerDelete}
+const deleteAllPlayers = async (res, req)=>{
+  try {
+    await services.servicesDeleteAllPlayers()
+    res.status(201).json()
+  } catch (error) {
+    res.status(400).json({Error: error.message})
+  }
+}
+
+export  {playersGet, playersPost, playerUpdate, PlayerDelete, deleteAllPlayers}

@@ -30,6 +30,13 @@ class ServicesPlayers{
       throw error;
     }
   }
+  async servicesDeleteAllPlayers(){
+    try {
+      await repositorio.repositoiredeleteAllPlayers()
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export default ServicesPlayers
