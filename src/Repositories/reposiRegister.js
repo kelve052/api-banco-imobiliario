@@ -7,13 +7,7 @@ class UserReposiRegister{
       if(!player){
         throw new Error("id entered does not exist!")
       }
-      if(body.player == "banco"){
-        player.register.push(body)
-        player.balancer = player.balancer - body.balancerValue
-        await player.save()
-        return player
-      }else{
-        const sendingPlayer = await modelPlayers.findOne({name: body.player})
+      const sendingPlayer = await modelPlayers.findOne({name: body.player})
         if(!sendingPlayer){
           throw new Error("Player inserted does not exist!")
         }
@@ -36,7 +30,6 @@ class UserReposiRegister{
           // não pode cair nesta condição mas deixei um throw error porque vai que cai em algum teste
           throw new Error("if que não era para acontecer aconteceu linha 27 repositorie register")
         }
-      }
     } catch (error) {
       throw error;
     }
