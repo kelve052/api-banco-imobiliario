@@ -3,6 +3,7 @@ import {playersGet, playersPost, playerUpdate, PlayerDelete, deleteAllPlayers} f
 import auth from "../Controllers/contollerAuth.js";
 import authentication from "../middleware/authentication.js";
 import { postRegister } from "../Controllers/controllerRegister.js";
+import { getBanco, postBanco, putBanco, deleteBanco, deleteBancoAll} from "../Controllers/constrollerBanco.js";
 
 const router = express.Router()
 
@@ -11,8 +12,12 @@ router.route("/players").get(authentication, playersGet)
 router.route("/player").post(playersPost)
 router.route("/player/:id").put(authentication, playerUpdate).delete(authentication, PlayerDelete)
 router.route("/deleteAllPlayers").delete(authentication, deleteAllPlayers)
-router.route("/auth").post(auth)
 
+router.route("/bancos").get(authentication ,getBanco)
+router.route("/banco").post(authentication, postBanco)
+router.route("/banco/:id").put(authentication,putBanco).delete(authentication, deleteBanco)
+router.route("/bancosDeleteAll").delete(authentication, deleteBancoAll)
+router.route("/auth").post(auth)
 router.route("/register/:idPlayer").post(authentication, postRegister)
 
 export default router;
