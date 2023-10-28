@@ -2,7 +2,7 @@ import express from "express";
 import {playersGet, playersPost, playerUpdate, PlayerDelete, deleteAllPlayers} from "../Controllers/controllersPlayers.js";
 import auth from "../Controllers/contollerAuth.js";
 import authentication from "../middleware/authentication.js";
-import { postRegister } from "../Controllers/controllerRegister.js";
+import { postRegister, postRegisterBanco } from "../Controllers/controllerRegister.js";
 import { getBanco, postBanco, putBanco, deleteBanco, deleteBancoAll} from "../Controllers/constrollerBanco.js";
 
 const router = express.Router()
@@ -17,7 +17,10 @@ router.route("/bancos").get(authentication ,getBanco)
 router.route("/banco").post(authentication, postBanco)
 router.route("/banco/:id").put(authentication,putBanco).delete(authentication, deleteBanco)
 router.route("/bancosDeleteAll").delete(authentication, deleteBancoAll)
-router.route("/auth").post(auth)
+
 router.route("/register/:idPlayer").post(authentication, postRegister)
+router.route("/registerBanco/:idBanco").post(authentication, postRegisterBanco)
+
+router.route("/auth").post(auth)
 
 export default router;
