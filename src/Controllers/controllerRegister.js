@@ -9,7 +9,7 @@ const postRegister = async (req, res)=>{
     if(!status || !player || !balancerValue){
       throw new Error("Body required: status (received or sent), player and balancerValue!")
     }
-    if(status != "sent" && status != "received"){
+    if(status != "sent"){
       throw new Error("property estatus required sent or received!")
     }
     const body = {status, player, balancerValue}
