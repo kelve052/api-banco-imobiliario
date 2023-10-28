@@ -14,6 +14,9 @@ const playersPost = async (req, res)=>{
      res.status(400).json({Error: "body incorret, name, tean and password required!"})
      return;// return vazio é nessesario para não dar erro de ao tentar executar o proximo res.json
    }
+   if(name.startsWith("Banco") || name.startsWith("banco")){
+    throw new Error("Name cannot startWhith Banco")
+   }
   if(password.length < 8){
     res.status(400).json({Error:"The password required minimum 8 caracters!"})
     return;
