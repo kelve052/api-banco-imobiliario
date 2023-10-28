@@ -10,7 +10,7 @@ const postRegister = async (req, res)=>{
       throw new Error("Body required: status (received or sent), player and balancerValue!")
     }
     if(status != "sent"){
-      throw new Error("property estatus required sent or received!")
+      throw new Error("property estatus required sent!")
     }
     const body = {status, player, balancerValue}
     const newRegister = await servicesRegister.ServicesPostREgister(id, body)
