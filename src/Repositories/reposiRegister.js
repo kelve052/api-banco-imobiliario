@@ -14,22 +14,17 @@ class UserReposiRegister{
         if(sendingPlayer.name == player.name){
           throw new Error("the inserted player cannot be the same as the current player in the transaction")
         }
-        if(body.status == "sent"){
-          if(player.balancer < body.balancerValue || body.balancerValue <=0){
-            throw new Error("BalancerValue cannot be negativo or zero and greater than the current balancer!")
-          }
-          player.register.push(body)
-          player.balancer = player.balancer - body.balancerValue
-          await player.save()
-          const bodySendingPlayer = {_id: player.register[player.register.length - 1].id, status: "received", player: player.name, balancerValue: body.balancerValue}
-          sendingPlayer.register.push(bodySendingPlayer)
-          sendingPlayer.balancer = sendingPlayer.balancer + bodySendingPlayer.balancerValue
-          await sendingPlayer.save()
-          return {player: player, sendingPlayer: sendingPlayer}
-        }else{
-          // não pode cair nesta condição mas deixei um throw error porque vai que cai em algum teste
-          throw new Error("if que não era para acontecer aconteceu linha 27 repositorie register")
+        if(player.balancer < body.balancerValue || body.balancerValue <=0){
+          throw new Error("BalancerValue cannot be negativo or zero and greater than the current balancer!")
         }
+        player.register.push(body)
+        player.balancer = player.balancer - body.balancerValue
+        await player.save()
+        const bodySendingPlayer = {_id: player.register[player.register.length - 1].id, status: "received", player: player.name, balancerValue: body.balancerValue}
+        sendingPlayer.register.push(bodySendingPlayer)
+        sendingPlayer.balancer = sendingPlayer.balancer + bodySendingPlayer.balancerValue
+        await sendingPlayer.save()
+        return {player: player, sendingPlayer: sendingPlayer}
     } catch (error) {
       throw error;
     }
