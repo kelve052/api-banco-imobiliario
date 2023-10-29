@@ -29,8 +29,32 @@ class UserReepositoriePlayers {
         if(existPlayer){
           throw new Error("Name already belongs to player!")
         }
+        try {
+          // codico responsavel por atualizar name dos palyer no registro caso name seja atualizado
+          const registerRelation = Player.register.filter(item => item.status === "received" && !item.player.startsWith("Banco"));
+        const idsRelation = [];
+
+        for (let c = 0; c < registerRelation.length; c++) {
+          const player = await modelPlayers.findOne({ name: registerRelation[c].player });
+
+          if (player) {
+            idsRelation.push(player._id);
+          }
+        }
+
+        for (let c = 0; c < registerRelation.length; c++) {
+          const playerId = idsRelation[c];
+
+          await modelPlayers.findOneAndUpdate(
+            { _id: playerId, 'register._id': registerRelation[c]._id },
+            { $set: { 'register.$.player': body.name } }
+          );
+        }
+        } catch (error) {
+          throw new Error("error in alter name register!")
+        }
         const newPlayer = await modelPlayers.findByIdAndUpdate(id, body, { new: true });
-        return newPlayer;
+        return newPlayer
       }
     } catch (error) {
       throw error
