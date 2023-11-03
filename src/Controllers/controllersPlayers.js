@@ -78,7 +78,7 @@ const PlayerDelete = async (req, res)=>{
 }
 //-----------------------------------------------------------------------------------------------------
 
-const deleteAllPlayers = async (res, req)=>{
+const deleteAllPlayers = async (req, res)=>{
   try {
     await services.servicesDeleteAllPlayers()
     res.status(201).json()
