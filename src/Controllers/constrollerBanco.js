@@ -15,10 +15,11 @@ const getBanco = async (req, res)=>{
 
 const postBanco = async(req, res)=>{
   try {
-    const {name,  balancer} = req.body
+    let {name,  balancer} = req.body
     if(!name || !balancer){
       throw new Error("Body required: name and balancer")
     }
+    name = `$B: ${name}`
     const body = {name,  balancer}
     const post = await servicesBanco.servicesBancoPost(body)
     res.status(200).json({Banco: post})
@@ -30,11 +31,12 @@ const postBanco = async(req, res)=>{
 const putBanco = async (req, res)=>{
   try {
     const id = req.params.id
-  const {name, balancer} = req.body
-  if(!name || !balancer){
-    throw new Error("Body required: name and balancer")
-  }
-  const body = {name,  balancer}
+    const {name, balancer} = req.body
+    if(!name || !balancer){
+      throw new Error("Body required: name and balancer")
+    }
+    name = `$B: ${name}`
+    const body = {name,  balancer}
     const newBanco = await servicesBanco.servicesBancoPut(id, body)
     res.status(200).json({Banco: newBanco})
   } catch (error) {
