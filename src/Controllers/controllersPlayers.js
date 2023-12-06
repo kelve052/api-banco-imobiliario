@@ -17,8 +17,8 @@ const playersPost = async (req, res)=>{
    if(!name || !tean || !password){
      throw new Error("body incorret, name, tean and password required!")
    }
-   if(name.startsWith("Banco") || name.startsWith("banco")){
-    throw new Error("Name cannot startWhith Banco")
+   if(name.startsWith("Banco") || name.startsWith("$B")){
+    throw new Error("Name cannot start whith $B")
    }
   if(password.length < 8){
     throw new Error("The password required minimum 8 caracters!")
@@ -45,7 +45,7 @@ const playerUpdate = async (req, res)=>{
     if(!name || !tean || !balancer || !password){
       throw new Error("imcomplete body, required name, tean, balancer and password")
     }
-    if(name.startsWith("Banco") || name.startsWith("banco")){
+    if(name.startsWith("Banco") || name.startsWith("$B")){
       throw new Error("Name cannot startWhith Banco")
     }
     if(password.length < 8){
