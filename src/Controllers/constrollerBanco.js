@@ -31,7 +31,7 @@ const postBanco = async(req, res)=>{
 const putBanco = async (req, res)=>{
   try {
     const id = req.params.id
-    const {name, balancer} = req.body
+    let {name, balancer} = req.body
     if(!name || !balancer){
       throw new Error("Body required: name and balancer")
     }
