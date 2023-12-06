@@ -6,14 +6,13 @@ const modelRegistro = new mongoose.Schema({
     type: String,
     default: uuidv4
   },
-  status: {
+  PlayerWhoSent: {
     type: String,
-    enum: ["received", "sent"]
   },
-  player: {
+  playerWhoReceived: {
     type: String
   },
-  balancerValue: {
+  BalnceValue: {
     type: Number
   }
 })
