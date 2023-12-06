@@ -57,9 +57,11 @@ class UserReepositoriePlayers {
           //codico responsavel por alterar o registro no Banco caso name for alterado
           const registerRelationBanco = Player.register.filter(item => item.player.startsWith("Banco"));
           const bancosrelationsIds = [] // armazena ids dos bancos que tem registro com o player a ser atualizado
-          for(let c = 0; c<registerRelationBanco.length;c++){
-            const nameBanco = await modelBanco.findOne({ name: (registerRelationBanco[0].player.split(' ')[1])})//o split esta sendo usado para pegar de "Banco: nome do banco" apenas "nome do banco"
-            bancosrelationsIds.push(nameBanco._id)
+          for(let c = 0; c<registerRelationBanco.length;c++){        
+            const nameBanco = await modelBanco.findOne({ name: (registerRelationBanco[0].player.split(' ')[1])})//o split esta sendo usado para pegar de "Banco: nome do banco" apenas "nome do banco"          
+            if(nameBanco){
+              bancosrelationsIds.push(nameBanco._id)
+            }
           }
           for (let c = 0; c < registerRelationBanco.length; c++) {
             const bancoId = bancosrelationsIds[c];
