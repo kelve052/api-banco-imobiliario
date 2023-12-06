@@ -18,8 +18,7 @@ router.route("/banco").post(authentication, postBanco)
 router.route("/banco/:id").put(authentication,putBanco).delete(authentication, deleteBanco)
 router.route("/bancosDeleteAll").delete(authentication, deleteBancoAll)
 
-router.route("/register/:idPlayer").post(authentication, postRegister)
-router.route("/registerBanco/:idBanco").post(authentication, postRegisterBanco)
+router.route("/register").post(authentication, postRegister)
 
 router.route("/auth").post(auth)
 
