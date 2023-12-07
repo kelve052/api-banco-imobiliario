@@ -2,7 +2,7 @@ import express from "express";
 import {playersGet, playersPost, playerUpdate, PlayerDelete, deleteAllPlayers} from "../Controllers/controllersPlayers.js";
 import auth from "../Controllers/contollerAuth.js";
 import authentication from "../middleware/authentication.js";
-import { postRegister, postRegisterBanco } from "../Controllers/controllerRegister.js";
+import { postRegister} from "../Controllers/controllerRegister.js";
 import { getBanco, postBanco, putBanco, deleteBanco, deleteBancoAll} from "../Controllers/constrollerBanco.js";
 
 const router = express.Router()

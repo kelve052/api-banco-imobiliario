@@ -1,73 +1,51 @@
+import { model } from "mongoose";
 import modelPlayers from "../Model/model.js";
 import modelBanco from "../Model/modelBanco.js";
+import modelRegister from "../Model/modelRegister.js";
 
 class UserReposiRegister{
-  async PostRegister(id, body){
+  async PostRegister(body){
     try {
-      const player = await modelPlayers.findById(id)
-      if(!player){
-        throw new Error("id entered does not exist!")
-      }
-      const sendingPlayer = await modelPlayers.findOne({name: body.player})
-        if(!sendingPlayer){
-          throw new Error("Player inserted does not exist!")
-        }
-        if(sendingPlayer.name == player.name){
-          throw new Error("the inserted player cannot be the same as the current player in the transaction")
-        }
-        if(player.balancer < body.balancerValue || body.balancerValue <=0){
-          throw new Error("BalancerValue cannot be negativo or zero and greater than the current balancer!")
-        }
-        player.register.push(body)
-        player.balancer = player.balancer - body.balancerValue
-        await player.save()
-        const bodySendingPlayer = {_id: player.register[player.register.length - 1].id, status: "received", player: player.name, balancerValue: body.balancerValue}
-        sendingPlayer.register.push(bodySendingPlayer)
-        sendingPlayer.balancer = sendingPlayer.balancer + bodySendingPlayer.balancerValue
-        await sendingPlayer.save()
-        return {player: player, sendingPlayer: sendingPlayer}
-    } catch (error) {
-      throw error;
-    }
-  }
+      const playerWhoSent = await modelPlayers.findOne({name: body.playerWhoSent})
+      const playerWhoReceived = await modelPlayers.findOne({name: body.playerWhoReceived})
 
+      const playerWhoSentIsBank = await modelBanco.findOne({name: body.playerWhoSent})
+      const playerWhoReceivedIsBank = await modelBanco.findOne({name: body.playerWhoReceived})
 
-
-  async PostRegisterBanco(id, body){
-    try {
-      const banco = await modelBanco.findById(id)
-      if(!banco){
-        throw new Error("id entered does not exist!")
-      }
-      const sendingPlayer = await modelPlayers.findOne({name: body.player})
-      if(!sendingPlayer){
-        throw new Error("Player inserted does not exist!")
-      }
-      if(body.status ==  "sent"){
-        if(banco.balancer < body.balancerValue || body.balancerValue <=0){
-          throw new Error("BalancerValue in banco cannot be negativo or zero and greater than the current balancer!")
+      if(playerWhoSent && playerWhoReceived){ // check if is players
+        playerWhoSent.balancer = playerWhoSent.balancer - body.balanceValue
+        if(playerWhoSent.balancer < 0 || body.balanceValue < 0){  // validade balance
+          throw new Error("Insufficient balance in playerWhosent")
         }
-        banco.register.push(body)
-        banco.balancer = banco.balancer - body.balancerValue
-        await banco.save()
-        const bodySendingPlayer = {_id: banco.register[banco.register.length - 1].id, status: "received", player: `Banco: ${banco.name}`, balancerValue: body.balancerValue}
-        sendingPlayer.register.push(bodySendingPlayer)
-        sendingPlayer.balancer = sendingPlayer.balancer + bodySendingPlayer.balancerValue
-        sendingPlayer.save()
-        return {Banco: banco, Player: sendingPlayer}
+        playerWhoSent.save()
+        playerWhoReceived.balancer = playerWhoReceived.balancer + body.balanceValue
+        playerWhoReceived.save()
+        const createRegister = await modelRegister.create(body)
+        return createRegister
+
+      }else if (playerWhoSent && playerWhoReceivedIsBank){ //check if is player and bank
+        playerWhoSent.balancer = playerWhoSent.balancer - body.balanceValue
+        if(playerWhoSent.balancer < 0 || body.balanceValue < 0){  // validade balance
+          throw new Error("Insufficient balance in playerWhosent")
+        }
+        playerWhoSent.save()
+        playerWhoReceivedIsBank.balancer = playerWhoReceivedIsBank.balancer + body.balanceValue
+        playerWhoReceivedIsBank.save()
+        const createRegister = await modelRegister.create(body)
+        return createRegister
+        
+      }else if(playerWhoReceived && playerWhoSentIsBank){ //check if is reverse player and bank
+        playerWhoSentIsBank.balancer = playerWhoSentIsBank.balancer - body.balanceValue
+        if(playerWhoSentIsBank.balancer < 0 || body.balanceValue < 0){  // validade balance
+          throw new Error("Insufficient balance in playerWhosent")
+        }
+        playerWhoSentIsBank.save()
+        playerWhoReceived.balancer = playerWhoReceived.balancer + body.balanceValue
+        playerWhoReceived.save()
+        const createRegister = await modelRegister.create(body)
+        return createRegister
       }else{
-        //body status == received
-        if(sendingPlayer.balancer < body.balancerValue || body.balancerValue <=0){
-          throw new Error("BalancerValue in player cannot be negativo or zero and greater than the current balancer!")
-        }
-        banco.register.push(body)
-        banco.balancer = banco.balancer + body.balancerValue
-        await banco.save()
-        const bodySendingPlayer = {_id: banco.register[banco.register.length - 1].id, status: "sent", player: `Banco: ${banco.name}`, balancerValue: body.balancerValue}
-        sendingPlayer.register.push(bodySendingPlayer)
-        sendingPlayer.balancer = sendingPlayer.balancer - bodySendingPlayer.balancerValue
-        sendingPlayer.save()
-        return {Banco: banco, Player: sendingPlayer}
+        throw new Error("playerWhoSent or playerWhoReceived cannot exits and are not banks")
       }
     } catch (error) {
       throw error;
@@ -75,4 +53,6 @@ class UserReposiRegister{
   }
 }
 
+
+ 
 export default UserReposiRegister

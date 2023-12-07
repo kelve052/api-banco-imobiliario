@@ -1,20 +1,20 @@
 import mongoose from "mongoose";
 import {v4 as uuidv4} from 'uuid'
 
-const modelRegistro = new mongoose.Schema({
+const modelRegister = new mongoose.Schema({
   _id: {
     type: String,
     default: uuidv4
   },
-  PlayerWhoSent: {
+  playerWhoSent: {
     type: String,
   },
   playerWhoReceived: {
     type: String
   },
-  BalnceValue: {
+  balanceValue: {
     type: Number
   }
 })
 
-export {modelRegistro}
+export default mongoose.model("Register", modelRegister)
