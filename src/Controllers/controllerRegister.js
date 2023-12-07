@@ -2,6 +2,17 @@ import ServicesRegister from "../Services/servicesRegister.js";
 
 const servicesRegister = new ServicesRegister()
 
+
+const getRegister = async (req, res)=>{
+  try {
+    const get = await servicesRegister.ServicesGetRegister()
+    res.status(200).json({Registers: get})
+  } catch (error) {
+    res.status(400).json({Error: error.message})
+  }
+}
+
+// -----------------------------------------------------------------------------
 const postRegister = async (req, res)=>{
   try {
     const {playerWhoSent, playerWhoReceived, balanceValue} = req.body
@@ -19,4 +30,4 @@ const postRegister = async (req, res)=>{
   }
 }
 
-export {postRegister}
+export { getRegister, postRegister}

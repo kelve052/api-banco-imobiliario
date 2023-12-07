@@ -4,6 +4,15 @@ import modelBanco from "../Model/modelBanco.js";
 import modelRegister from "../Model/modelRegister.js";
 
 class UserReposiRegister{
+  async getRegister(){
+    try {
+      const get = await modelRegister.find()
+      return get
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async PostRegister(body){
     try {
       const playerWhoSent = await modelPlayers.findOne({name: body.playerWhoSent})
@@ -33,7 +42,7 @@ class UserReposiRegister{
         playerWhoReceivedIsBank.save()
         const createRegister = await modelRegister.create(body)
         return createRegister
-        
+
       }else if(playerWhoReceived && playerWhoSentIsBank){ //check if is reverse player and bank
         playerWhoSentIsBank.balancer = playerWhoSentIsBank.balancer - body.balanceValue
         if(playerWhoSentIsBank.balancer < 0 || body.balanceValue < 0){  // validade balance
