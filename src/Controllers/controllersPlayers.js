@@ -62,6 +62,7 @@ const playerUpdate = async (req, res)=>{
       const newPlayer = await services.servicesPutPlayer(id, body)
       res.status(200).json({Player: newPlayer})
  } catch (error) {
+  console.log(error)
    res.status(400).json({Error: error.message})
  }
 }

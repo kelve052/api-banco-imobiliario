@@ -1,5 +1,5 @@
-import { model } from "mongoose";
 import modelBanco from "../Model/modelBanco.js"
+import modelRegister from "../Model/modelRegister.js";
 
 class UserRepositoryBanco{
   async repositorieGetBanco (){
@@ -38,7 +38,13 @@ class UserRepositoryBanco{
       if(body.balancer < 0){
         throw new Error("the balancer cannot be less than 0!")
       }
-      return await modelBanco.findByIdAndUpdate(id, body, {new: true})
+      if(body.name != banco.name){
+        await modelRegister.updateMany({playerWhoSent: banco.name},  {playerWhoSent: body.name})
+        await modelRegister.updateMany({playerWhoReceived: banco.name}, {playerWhoReceived: body.name})
+        return await modelBanco.findByIdAndUpdate(id, body, {new: true})
+      }else{
+        return await modelBanco.findByIdAndUpdate(id, body, {new: true})
+      }
     } catch (error) {
       throw error;
     }
