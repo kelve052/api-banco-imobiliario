@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import {v4 as uuidv4} from 'uuid'
-import { modelRegistro } from "./modelRegister.js";
 
 const modelBanco = new mongoose.Schema({
   _id: {
@@ -14,10 +13,6 @@ const modelBanco = new mongoose.Schema({
   balancer:{
     type: Number,
     default: 0
-  },
-  register: {
-    type: [modelRegistro],
-    default: null
   }
 })
 
