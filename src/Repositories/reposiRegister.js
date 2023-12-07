@@ -60,6 +60,14 @@ class UserReposiRegister{
       throw error;
     }
   }
+  async deleteRegister(){
+    try {
+      const deleteRegisters = await modelRegister.deleteMany()
+      return deleteRegisters
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 

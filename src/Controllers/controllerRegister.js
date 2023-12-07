@@ -30,4 +30,16 @@ const postRegister = async (req, res)=>{
   }
 }
 
-export { getRegister, postRegister}
+// -------------------------------------------------------------------------------------------------
+
+const deleteRegisterAll = async (req, res)=>{
+  try {
+    await servicesRegister.servicesDeleteAll()
+    res.status(201).json()
+  } catch (error) {
+    res.status(400).json({Error: error.message})
+  }
+}
+
+
+export { getRegister, postRegister,deleteRegisterAll}

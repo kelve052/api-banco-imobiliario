@@ -17,6 +17,13 @@ class ServicesRegister{
       throw error;
     }
   }
+  async servicesDeleteAll(){
+    try {
+      return await repositoryeRegister.deleteRegister()
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export default ServicesRegister;
