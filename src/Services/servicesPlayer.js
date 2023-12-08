@@ -1,5 +1,5 @@
-import UserReepositoriePlayers from "../Repositories/repositories.js";
-import UserReposytorieAuth from "../Repositories/reposiAuth.js";
+import UserReepositoriePlayers from "../repositories/repositories.js";
+import UserReposytorieAuth from "../repositories/reposiAuth.js";
 
 const repositorio = new UserReepositoriePlayers()
 

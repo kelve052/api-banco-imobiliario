@@ -1,6 +1,5 @@
-import { model } from "mongoose";
-import modelPlayers from "../Model/model.js";
-import modelRegister from "../Model/modelRegister.js";
+import modelPlayers from "../model/model.js";
+import modelRegister from "../model/modelRegister.js";
 
 class UserReepositoriePlayers {
   async repositorieGet(){

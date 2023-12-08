@@ -1,4 +1,4 @@
-import ServicesBank from "../Services/servicesBank.js";
+import ServicesBank from "../services/servicesBank.js";
 
 const servicesBank = new ServicesBank()
 

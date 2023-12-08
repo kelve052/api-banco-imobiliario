@@ -1,4 +1,4 @@
-import UserRepositoryBank from "../Repositories/reposiBank.js";
+import UserRepositoryBank from "../repositories/reposiBank.js";
 
 const repositoryeBank = new UserRepositoryBank()
 

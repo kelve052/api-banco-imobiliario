@@ -1,4 +1,4 @@
-import UserReposiRegister from "../Repositories/reposiRegister.js";
+import UserReposiRegister from "../repositories/reposiRegister.js";
 
 const repositoryeRegister = new UserReposiRegister()
 

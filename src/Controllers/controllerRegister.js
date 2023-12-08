@@ -1,4 +1,4 @@
-import ServicesRegister from "../Services/servicesRegister.js";
+import ServicesRegister from "../services/servicesRegister.js";
 
 const servicesRegister = new ServicesRegister()
 

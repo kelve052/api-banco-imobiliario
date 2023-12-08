@@ -1,5 +1,5 @@
 import aplicacao from "./aplicacao.js";
-import { connectDB } from "./Database/db.js";
+import { connectDB } from "./database/db.js";
 
 export const start = async () => {
   try {
