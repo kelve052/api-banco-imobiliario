@@ -12,12 +12,12 @@ const playersGet = async (req, res)=>{
 //-----------------------------------------------------------------------------------------------------
 const playersPost = async (req, res)=>{
  try {
-   const {name, tean, password} = req.body
-   const body = {name, tean, password}
-   if(!name || !tean || !password){
-     throw new Error("body incorret, name, tean and password required!")
+   const {name, team, password} = req.body
+   const body = {name, team, password}
+   if(!name || !team || !password){
+     throw new Error("body incorret, name, team and password required!")
    }
-   if(name.startsWith("Banco") || name.startsWith("$B")){
+   if(name.startsWith("$B")){
     throw new Error("Name cannot start whith $B")
    }
   if(password.length < 8){
@@ -40,13 +40,13 @@ const playersPost = async (req, res)=>{
 const playerUpdate = async (req, res)=>{
   try {
     const id = req.params.id
-    const {name, tean, balancer, password} = req.body
-    const body = {name, tean, balancer, password}
-    if(!name || !tean || !balancer || !password){
-      throw new Error("imcomplete body, required name, tean, balancer and password")
+    const {name, team, balancer, password} = req.body
+    const body = {name, team, balancer, password}
+    if(!name || !team || !balancer || !password){
+      throw new Error("imcomplete body, required name, team, balancer and password")
     }
-    if(name.startsWith("Banco") || name.startsWith("$B")){
-      throw new Error("Name cannot startWhith Banco")
+    if(name.startsWith("$B")){
+      throw new Error("Name cannot startWhith $B")
     }
     if(password.length < 8){
       throw new Error("The password required minimum 8 caracters!")
@@ -56,8 +56,8 @@ const playerUpdate = async (req, res)=>{
     if(!passwordregex){
       throw new Error("Mandatory password symbol, a number and capital latter!")
     }
-    if(tean != "Yellow" && tean != "Blue" && tean != "White" && tean != "Black" && tean != "Red" && tean != "Green"){
-      throw new Error("value of tean invalid, required: Yellow or Blue or White or Black or Red or Green")
+    if(team != "Yellow" && team != "Blue" && team != "White" && team != "Black" && team != "Red" && team != "Green"){
+      throw new Error("value of team invalid, required: Yellow or Blue or White or Black or Red or Green")
     }
       const newPlayer = await services.servicesPutPlayer(id, body)
       res.status(200).json({Player: newPlayer})

@@ -1,6 +1,6 @@
 import { model } from "mongoose";
 import modelPlayers from "../Model/model.js";
-import modelBanco from "../Model/modelBanco.js";
+import modelBank from "../Model/modelBank.js";
 import modelRegister from "../Model/modelRegister.js";
 
 class UserReposiRegister{
@@ -18,8 +18,8 @@ class UserReposiRegister{
       const playerWhoSent = await modelPlayers.findOne({name: body.playerWhoSent})
       const playerWhoReceived = await modelPlayers.findOne({name: body.playerWhoReceived})
 
-      const playerWhoSentIsBank = await modelBanco.findOne({name: body.playerWhoSent})
-      const playerWhoReceivedIsBank = await modelBanco.findOne({name: body.playerWhoReceived})
+      const playerWhoSentIsBank = await modelBank.findOne({name: body.playerWhoSent})
+      const playerWhoReceivedIsBank = await modelBank.findOne({name: body.playerWhoReceived})
 
       if(playerWhoSent && playerWhoReceived){ // check if is players
         playerWhoSent.balancer = playerWhoSent.balancer - body.balanceValue

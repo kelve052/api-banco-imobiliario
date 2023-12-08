@@ -1,14 +1,14 @@
 import mongoose from "mongoose";
 import {v4 as uuidv4} from 'uuid'
 
-const modelBanco = new mongoose.Schema({
+const modelBank = new mongoose.Schema({
   _id: {
     type:  String,
     default: uuidv4
   },
   name: {
     type: String,
-    default: "Banco-Dlatles"
+    default: "$B: Bank-Dlatles"
   },
   balancer:{
     type: Number,
@@ -16,4 +16,4 @@ const modelBanco = new mongoose.Schema({
   }
 })
 
-export default mongoose.model("Banco", modelBanco);
+export default mongoose.model("Bank", modelBank);

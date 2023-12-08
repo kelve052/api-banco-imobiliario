@@ -12,7 +12,7 @@ const modelPlayers = new mongoose.Schema({
     unique: [true, 'Campo nome tem que ser unico ja existe um player co um nome existe!'],
     trim: true
   },
-  tean: {
+  team: {
     type: String,
     enum: ['Yellow', 'Blue', 'White', 'Black', 'Red', 'Green']
   },

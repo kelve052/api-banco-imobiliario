@@ -1,11 +1,11 @@
-import ServicesBanco from "../Services/servicesBanco.js";
+import ServicesBank from "../Services/servicesBank.js";
 
-const servicesBanco = new ServicesBanco()
+const servicesBank = new ServicesBank()
 
-const getBanco = async (req, res)=>{
+const getBank = async (req, res)=>{
   try {
-    const banco = await servicesBanco.servicesBancoGet()
-    res.status(200).json({Banco: banco})
+    const bank = await servicesBank.servicesBankGet()
+    res.status(200).json({Bank: bank})
   } catch (error) {
     res.status(400).json({Error: error.message})
   }
@@ -13,7 +13,7 @@ const getBanco = async (req, res)=>{
 
 //-----------------------------------------------------------------------------------------------------
 
-const postBanco = async(req, res)=>{
+const postBank = async(req, res)=>{
   try {
     let {name,  balancer} = req.body
     if(!name || !balancer){
@@ -21,14 +21,14 @@ const postBanco = async(req, res)=>{
     }
     name = `$B: ${name}`
     const body = {name,  balancer}
-    const post = await servicesBanco.servicesBancoPost(body)
-    res.status(200).json({Banco: post})
+    const post = await servicesBank.servicesBankPost(body)
+    res.status(200).json({Bank: post})
   } catch (error) {
     res.status(400).json({Error: error.message})
   }
 }
 //-----------------------------------------------------------------------------------------------------
-const putBanco = async (req, res)=>{
+const putBank = async (req, res)=>{
   try {
     const id = req.params.id
     let {name, balancer} = req.body
@@ -37,18 +37,18 @@ const putBanco = async (req, res)=>{
     }
     name = `$B: ${name}`
     const body = {name,  balancer}
-    const newBanco = await servicesBanco.servicesBancoPut(id, body)
-    res.status(200).json({Banco: newBanco})
+    const newBank = await servicesBank.servicesBankPut(id, body)
+    res.status(200).json({Bank: newBank})
   } catch (error) {
     res.status(400).json({Error: error.message})
   }
 }
 //-----------------------------------------------------------------------------------------------------
 
-const deleteBanco = async (req, res)=>{
+const deleteBank = async (req, res)=>{
   try {
     const id = req.params.id
-    await servicesBanco.servicesDelete(id)
+    await servicesBank.servicesDelete(id)
     res.status(201).json()
   } catch (error) {
     res.status(400).json({Error: error.message})
@@ -56,13 +56,13 @@ const deleteBanco = async (req, res)=>{
 }
 //-----------------------------------------------------------------------------------------------------
 
-const deleteBancoAll = async (req, res)=>{
+const deleteBankAll = async (req, res)=>{
   try {
-    await servicesBanco.servicesDeleteAll()
+    await servicesBank.servicesDeleteAll()
     res.status(201).json()
   } catch (error) {
     res.status(400).json({Error: error.message})
   }
 }
 
-export {getBanco, postBanco, putBanco, deleteBanco, deleteBancoAll}
+export {getBank, postBank, putBank, deleteBank, deleteBankAll}
