@@ -25,6 +25,7 @@ Sistema que realiza o gerenciamento de jogadores do jogo Banco Imobiliário.
 - [Estrutura do Projeto](#estrutura-do-projeto)
 - [Exemplos](#exemplos)
 - [Testes](#testes)
+- [Figma](#figma)
 - [Autores](#autores)
 
 ## Instalação
@@ -210,5 +211,9 @@ src
 Infelizmente, o projeto ainda não possui testes!
 
 ## Autores
+
+## Figma
+https://www.figma.com/file/UdCIXdqjEwe1PuSxsYkala/Untitled?type=design&node-id=0%3A1&mode=design&t=94urJ4ptsliXfpfq-1
+- Em breve o front-End!
 
 - [@Kelve Oliveira](https://github.com/kelve052)
