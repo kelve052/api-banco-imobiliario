@@ -22,7 +22,7 @@ router.route("/register").get(authentication, getRegister)
 router.route("/register").post(authentication, postRegister)
 router.route("/register").delete(authentication, deleteRegisterAll)
 
-router.route("/auth").post(auth)
+//router.route("/auth").post(auth)
 //update vercel
 
 export default router;
