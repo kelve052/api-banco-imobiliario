@@ -1,4 +1,4 @@
-import model from "../model/model.js";
+import model from "../Model/model.js";
 
 
 class UserReposytorieAuth {

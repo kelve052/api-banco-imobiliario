@@ -1,5 +1,5 @@
-import modelPlayers from "../model/model.js";
-import modelRegister from "../model/modelRegister.js";
+import modelPlayers from "../Model/model.js";
+import modelRegister from "../Model/modelRegister.js";
 
 class UserReepositoriePlayers {
   async repositorieGet(){

@@ -1,5 +1,5 @@
-import modelBank from "../model/modelBank.js"
-import modelRegister from "../model/modelRegister.js";
+import modelBank from "../Model/modelBank.js"
+import modelRegister from "../Model/modelRegister.js";
 
 class UserRepositoryBank{
   async repositorieGetBank (){

@@ -1,4 +1,4 @@
-import ServicesPlayers from "../services/servicesPlayer.js"
+import ServicesPlayers from '../Services/servicesPlayer.js'
 const services = new ServicesPlayers()
 
 const playersGet = async (req, res)=>{

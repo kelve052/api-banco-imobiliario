@@ -1,5 +1,5 @@
 import Jwt from "jsonwebtoken";
-import ServicesAuth from "../services/servicesAuth.js"
+import ServicesAuth from "../Services/servicesAuth.js"
 
 const auth = async (req, res)=>{
   try {

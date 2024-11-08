@@ -1,5 +1,6 @@
 import express from "express";
-import {playersGet, playersPost, playerUpdate, PlayerDelete, deleteAllPlayers} from "../controllers/controllersPlayers.js";
+
+import { playersGet, playersPost, playerUpdate, deleteAllPlayers, PlayerDelete } from "../Controllers/controllersPlayers.js";
 import auth from "../Controllers/contollerAuth.js";
 import authentication from "../middleware/authentication.js";
 import { getRegister, postRegister, deleteRegisterAll} from "../Controllers/controllerRegister.js";
