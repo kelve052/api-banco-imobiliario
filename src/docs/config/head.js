@@ -5,13 +5,9 @@ import { playersRouter } from "../routes/players.js";
 
 
 // Função para definir as URLs do servidor dependendo do ambiente
-const getServersInCorrectOrder = () => {
-  const devUrl = { url: process.env.SWAGGER_DEV_URL || 'http://localhost:3000' };
-  const prodUrl = 'https://banco-imobiliario-api.vercel.app' 
 
-  if (process.env.NODE_ENV === 'production') return [prodUrl, devUrl];
-  else return [devUrl, prodUrl];
-};
+const devUrl = process.env.SWAGGER_DEV_URL;
+const prodUrl = 'https://banco-imobiliario-api.vercel.app' 
 
 // Função para obter as opções do Swagger
 const getSwaggerOptions = () => {
@@ -27,7 +23,7 @@ const getSwaggerOptions = () => {
           email: 'banckshut@gamil.com',
         },
       },
-      servers: getServersInCorrectOrder(),
+      servers: devUrl ?? prodUrl,
       tags: [
         {
           name: 'Player',
