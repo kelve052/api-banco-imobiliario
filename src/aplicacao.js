@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from 'dotenv';
-import router from "./Router/router.js";
+import {router} from "./Router/router.js";
+import { routes } from "./Router/router.js";
 import { start } from "./sever.js";
 
 dotenv.config()
@@ -10,6 +11,7 @@ export  default aplicacao
 
 aplicacao.use(express.json())
 aplicacao.use('/', router)
+routes(aplicacao)
 
 
 start()
