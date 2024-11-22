@@ -32,10 +32,15 @@ router.route("/auth").post(auth)
 
 const routes = (app) => {
   // Configurando a documentação da Swagger UI para ser servida diretamente em '/'
-  const swaggerDocs = swaggerJsDoc(getSwaggerOptions());
-  app.use(swaggerUI.serve);
-  app.get('/', (req, res, next) => {
-      swaggerUI.setup(swaggerDocs)(req, res, next);
-  });}
+  app.use("/", swaggerUI.serve, swaggerUI.setup(swaggerJsDoc(getSwaggerOptions()), {
+    customCssUrl: [
+        "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.min.css"
+      ],
+      customJsUrl: [
+        "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-bundle.js",
+        "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.js"
+      ],
+    customSiteTitle: "Api", // Personalizando o título da página de documentação
+}));}
 
 export {router, routes};
