@@ -7,7 +7,7 @@ import { playersRouter } from "../routes/players.js";
 // Função para definir as URLs do servidor dependendo do ambiente
 const getServersInCorrectOrder = () => {
   const devUrl = { url: process.env.SWAGGER_DEV_URL || 'http://localhost:3000' };
-  const prodUrl = { url: process.env.SWAGGER_PROD_URL || 'http://localhost:3000' };
+  const prodUrl = 'https://banco-imobiliario-api.vercel.app' 
 
   if (process.env.NODE_ENV === 'production') return [prodUrl, devUrl];
   else return [devUrl, prodUrl];
